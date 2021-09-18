@@ -1,0 +1,28 @@
+{
+  "name": "proyectofinalm5",
+  "version": "1.0.0",
+  "description": "Creacion de api(BackEnd) con NodeJs y MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon npm ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javy10/proyectoFinalM5.git"
+  },
+  "author": "Javier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javy10/proyectoFinalM5/issues"
+  },
+  "homepage": "https://github.com/javy10/proyectoFinalM5#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
