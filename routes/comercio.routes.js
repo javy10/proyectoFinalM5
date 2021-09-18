@@ -1,19 +1,15 @@
-import Router from "express"
-import cController from "../controllers/comercioController.js";
-
+const Router =require( "express")
+const cController =require( "../controllers/comercioController.js")
 const ruta = Router();
+//todos
+ruta.get("/listadoComercios",cController.listado)
+//uno
+ruta.get("/uno/:id",cController.uno)
 
-//GET listado
-ruta.get("/listadoComercios", cController.listado)
-//GET uno
-ruta.get('/listadoUno/:id', cController.obtenerUno);
-//AGREGAR
-ruta.post("/registrar", cController.registrar)
-// PUT
-ruta.put('/actualizarComercio/:id', cController.actualizar);
-// DELETE
-ruta.delete('/eliminarComercio/:id', cController.eliminar);
+ruta.post("/registrar",cController.registrar)
 
+ruta.delete("/eliminarComercio/:id",cController.eliminar)
 
+ruta.put("/editarComercio/:id",cController.actualizar)
 
-export default ruta
+module.exports=ruta

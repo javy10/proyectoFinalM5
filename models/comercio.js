@@ -1,8 +1,11 @@
-import  Mongoose  from "mongoose";
+const  Mongoose  =require( "mongoose");
 
-const comercioSchema = Mongoose.Schema({
-    nombre:{type:String,require:true},
-    direccion:{type:String,require:true}
+
+const comercioSchema= Mongoose.Schema({
+
+    nombre:{type:String,required:true},
+    direccion:{type:String,required:true}
+
 })
 
-export default Mongoose.model('Comercio',comercioSchema)
+module.exports= Mongoose.model('Comercio',comercioSchema)

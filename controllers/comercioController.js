@@ -1,53 +1,53 @@
-import comercio from "../models/comercio.js";
+//referencia al modelo
+const comercio =require( "../models/comercio.js")
 
-const controlador = {}
+const controlador={}
 
-//MOSTRAR REGISTROS
-controlador.listado = async (req,res) => {
+controlador.listado= async (req,res)=>{
     console.log("Ejecutando el FIND")
-    const comercios = await comercio.find()
+    const comercios= await comercio.find()
     res.json(comercios)
 }
+/*
+controlador.uno= async (req,res)=>{
+    console.log("Consulta individual")
+    const uncomercio= await comercio.findById(req.params.id)
+    res.json(uncomercio)
+}*/
 
-//AGREGAR REGISTROS
-controlador.registrar = async (req,res) => {
-    const nuevoComercio = new comercio(req.body)
-    console.log(nuevoComercio);
-    await nuevoComercio.save();
-    res.send("Se creo un nuevo comercio")
-}
-
-//MOSTRAR SOLO 1 REGISTRO
-// controlador.obtenerUno = async (req,res) => {
-//     //const comercioUno = await comercio.findOne({ _id: req.params.id })
-//     const comercioUno = await comercio.findById(req.params.id)
-//     res.json(comercioUno)
-// }
-
-controlador.obtenerUno = async (req,res) => {
-    console.log("consulta individual")
+controlador.uno= async (req,res)=>{
+    console.log("Consulta individual")
     await comercio.findById(req.params.id)
-    .then((entidad) => res.status(200).send(entidad))
-    .catch((err) => res.status(400).send(err));
+    .then((entidad)=>res.status(200).send(entidad))
+    .catch((err)=>res.status(400).send(
+        {
+            "error":"No existe ese comercio",
+        "id":req.params.id
+        }
+        
+        ));
+    
 }
 
-//ACTUALIZAR REGISTROS
-controlador.actualizar = async (req,res) => {
-    const updateComercio = await comercio.findByIdAndUpdate(
-        req.params.id,
-        req.body
-    )
-    console.log(updateComercio);
-    res.send("Se actualizo el comercio")
+controlador.registrar= async (req,res)=>{
+    const nuevocomercio = new comercio(req.body)
+    console.log(nuevocomercio)
+    await nuevocomercio.save();
+    res.send("Se creo nuevo comercio")
 }
 
-//ELIMINAR REGISTROS
-controlador.eliminar = async (req,res) => {
+controlador.eliminar= async (req,res)=>{
+    console.log("Eliminación individual")
     await comercio.findByIdAndDelete(req.params.id)
-    res.send("Comercio eliminado...")
+    res.json({"status":"Comercio eliminado"})
+}
+
+controlador.actualizar= async (req,res)=>{
+    console.log("Actualizando un comercio")
+    await comercio.findByIdAndUpdate(req.params.id,req.body)
+    res.json({"status":"Comercio actualizado"})
 }
 
 
 
-
-export default controlador
+module.exports= controlador
